@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контент, который продаёт — мини-курс</title>
+  <meta name="description" content="Уйди из офлайна и начни зарабатывать на контенте с первого дня. Мини-курс по Reels и каруселям: без команды, бюджета и опыта." />
+  <meta property="og:title" content="Контент, который продаёт — мини-курс" />
+  <meta property="og:description" content="Пошаговая система запуска дохода из контента даже с 0 подписчиков." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1200&auto=format&fit=crop" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg-0:#0e0f12;
+      --bg-1:#121318;
+      --bg-2:#171921;
+      --card:#1d2029;
+      --muted:#a9b0bf;
+      --text:#ffffff;
+      --accent:#8ab4ff;
+      --success:#7ee787;
+      --danger:#ff7b7b;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius:14px;
+      --gap: clamp(16px, 2.5vw, 28px);
+      --max: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text); background: radial-gradient(1200px 800px at 80% -10%, #202436 0%, transparent 60%) , linear-gradient(180deg,var(--bg-0),var(--bg-1) 40%, var(--bg-2) 100%);
+      letter-spacing:.2px;
+    }
+    a{color:var(--text); text-decoration:none}
+    img{max-width:100%; display:block; height:auto}
+    .container{width:100%; max-width:var(--max); margin:0 auto; padding:0 20px}
+    .nav{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(14,15,18,.85), rgba(14,15,18,.55));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav__in{display:flex; align-items:center; justify-content:space-between; height:68px}
+    .logo{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.5px}
+    .logo__mark{
+      width:28px; height:28px; border-radius:8px; display:grid; place-items:center;
+      background: conic-gradient(from 210deg, #2a2f45, #1b1e2b, #2a2f45);
+      box-shadow: inset 0 0 28px rgba(138,180,255,.35), 0 6px 24px rgba(0,0,0,.4);
+      position:relative; overflow:hidden;
+    }
+    .logo__mark::after{
+      content:""; position:absolute; inset:2px; border-radius:6px;
+      background: radial-gradient(120px 80px at 30% 20%, rgba(138,180,255,.25), transparent 60%);
+    }
+    .nav__links{display:flex; gap:20px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      height:48px; padding:0 20px; border-radius:12px; font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      cursor:pointer
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.22)}
+    .btn--accent{
+      background: linear-gradient(180deg, rgba(138,180,255,.35), rgba(138,180,255,.15));
+      border-color: rgba(138,180,255,.45);
+      box-shadow: 0 12px 40px rgba(138,180,255,.25);
+    }
+    .hero{
+      position:relative; padding: clamp(40px, 6vw, 120px) 0 40px;
+      overflow:hidden; isolation:isolate;
+    }
+    .hero__grid{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap: var(--gap);
+      align-items:center;
+    }
+    .hero h1{
+      font-size: clamp(26px, 4.2vw, 52px); line-height:1.1; margin:0 0 18px;
+      letter-spacing:.3px;
+    }
+    .hero p{color:var(--muted); font-size: clamp(16px, 1.4vw, 18px)}
+    .hero__cta{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+    .chip{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px;
+      background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+      font-size:14px; color:#dfe6ff;
+    }
+    .hero__art{
+      position:relative; aspect-ratio: 4/5; border-radius: var(--radius);
+      background: linear-gradient(180deg,#1b1e27,#101218);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow); overflow:hidden;
+    }
+    .hero__art img{
+      width:100%; height:100%; object-fit:cover; opacity:.9; transform: scale(1.02);
+      filter: saturate(1) contrast(1.05);
+    }
+    .glow{
+      position:absolute; inset:auto; width:420px; height:420px; border-radius:50%;
+      background: radial-gradient(closest-side, rgba(138,180,255,.30), transparent);
+      filter: blur(40px); opacity:.6; pointer-events:none;
+    }
+    .glow--hero{right:-80px; top:-60px}
+    .section{padding: clamp(36px, 5vw, 96px) 0; position:relative}
+    .sec__heading{display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:28px; flex-wrap:wrap}
+    .kicker{font-weight:700; color:#cdd6f4; opacity:.8; letter-spacing:.12em; text-transform:uppercase; font-size:12px}
+    h2{margin:0; font-size: clamp(22px, 3vw, 34px)}
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap)}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1); border-radius: var(--radius);
+      padding:20px; box-shadow: var(--shadow);
+      transform: translateY(8px); opacity:0; transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s ease;
+    }
+    .card.is-inview{transform: translateY(0); opacity:1}
+    .card h3{margin:8px 0 8px; font-size:18px}
+    .card p{color:var(--muted); margin:0}
+    .list{display:grid; gap:10px; margin:18px 0 0; padding:0; list-style:none}
+    .list li{display:flex; gap:10px; align-items:flex-start}
+    .list .dot{
+      width:22px; height:22px; border-radius:7px;
+      background: linear-gradient(180deg, rgba(126,231,135,.25), rgba(126,231,135,.08));
+      border:1px solid rgba(126,231,135,.45); flex:0 0 22px; display:grid; place-items:center; font-size:12px;
+    }
+    .gallery{
+      display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:18px
+    }
+    .gallery img{height:140px; width:100%; object-fit:cover; border-radius:10px; border:1px solid rgba(255,255,255,.08)}
+    .feature{
+      display:grid; grid-template-columns: .9fr 1.1fr; gap: var(--gap); align-items:center;
+    }
+    .price{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap: var(--gap); align-items:stretch;
+    }
+    .price__tag{
+      font-size: clamp(26px, 4vw, 44px); font-weight:800;
+      background: linear-gradient(90deg, #fff, #cfe1ff); -webkit-background-clip:text; background-clip:text; color:transparent
+    }
+    .cta{
+      text-align:center; padding: clamp(28px, 4vw, 52px);
+      background: linear-gradient(180deg, rgba(138,180,255,.14), rgba(138,180,255,.06));
+      border:1px solid rgba(138,180,255,.25); border-radius: var(--radius); box-shadow: var(--shadow)
+    }
+    .cta p{color:#dfe6ff}
+    .faq{display:grid; gap:14px}
+    .faq details{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:16px 18px
+    }
+    .faq summary{cursor:pointer; font-weight:700}
+    .footer{
+      color:#c6ccdb; border-top:1px solid rgba(255,255,255,.06);
+      padding:20px 0 40px; font-size:14px
+    }
+    .badges{display:flex; gap:8px; flex-wrap:wrap}
+    .badge{
+      background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      padding:8px 12px; border-radius:999px; font-size:12px; color:#dbe6ff
+    }
+
+    /* Адаптив */
+    @media (max-width: 960px){
+      .hero__grid, .feature, .price{grid-template-columns: 1fr}
+      .gallery{grid-template-columns: repeat(2,1fr)}
+      .grid-3{grid-template-columns: 1fr}
+      .nav__links{display:none}
+      .hero{padding-top:40px}
+      .hero h1{font-size:26px; line-height:1.2}
+    }
+    @media (max-width: 600px){
+      .gallery{grid-template-columns: 1fr}
+      .hero__cta{flex-direction:column}
+      .btn{width:100%}
+      .hero__art{aspect-ratio: auto; height:auto}
+      h2{font-size:22px}
+      .card{padding:16px}
+      .sec__heading{flex-direction:column; align-items:flex-start}
+      body{font-size:15px}
+    }
+
+    /* Декор */
+    .coin{
+      position:absolute; width:18px; height:18px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #ffd98a, #c59b3a 60%, #8a6a20 100%);
+      box-shadow: 0 4px 12px rgba(0,0,0,.35), inset 0 0 8px rgba(255,255,255,.35);
+      opacity:.35; animation: float 9s ease-in-out infinite;
+    }
+    .coin:nth-child(1){left:8%; top:22%; animation-delay:-2s}
+    .coin:nth-child(2){left:18%; top:8%; width:14px; height:14px; animation-delay:-6s}
+    .coin:nth-child(3){right:16%; top:18%; width:16px; height:16px; animation-delay:-3s}
+    .coin:nth-child(4){right:10%; top:40%; width:20px; height:20px; animation-delay:-5s}
+    @keyframes float{
+      0%,100%{transform: translateY(0) translateX(0) rotate(0)}
+      50%{transform: translateY(-14px) translateX(6px) rotate(12deg)}
+    }
+    .pulse{
+      position:absolute; inset:-2px; border-radius:inherit; pointer-events:none;
+      background: radial-gradient(600px 320px at 85% 10%, rgba(126,231,135,.16), transparent 60%);
+      mix-blend-mode: screen; opacity:.6;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__in">
+      <div class="logo">
+        <span class="logo__mark"></span>
+        <span>Content Pro</span>
+      </div>
+      <nav class="nav__links">
+        <a href="#program">Программа</a>
+        <a href="#results">Результаты</a>
+        <a href="#price">Цена</a>
+        <a class="btn btn--accent" href="#buy">Получить доступ</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="coin"></div><div class="coin"></div><div class="coin"></div><div class="coin"></div>
+    <span class="glow glow--hero"></span>
+    <div class="container hero__grid">
+      <div>
+        <div class="chip">⚡ Старт с нуля — без команды и бюджета</div>
+        <h1>Уйди из выжженного офлайн-бизнеса и начни зарабатывать на контенте с первого дня — без команды, бюджета и опыта!</h1>
+        <p>Освой проверенную систему, которая помогает даже с нуля — 0 подписчиков и без знания Reels — превратить свои навыки в стабильный доход на автомате.</p>
+        <div class="hero__cta">
+          <a class="btn btn--accent" href="#buy">Получить доступ за 1990 ₽</a>
+          <a class="btn" href="#program">Что внутри курса</a>
+        </div>
+        <div class="badges" style="margin-top:14px">
+          <span class="badge">⏱ 2 недели</span>
+          <span class="badge">🎯 Reels и карусели</span>
+          <span class="badge">🧩 Шаблоны и чек-листы</span>
+        </div>
+      </div>
+      <div class="hero__art">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1600&auto=format&fit=crop" alt="Деньги и рост дохода" />
+        <span class="pulse"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sec__heading">
+        <div>
+          <div class="kicker">Проблема</div>
+          <h2>Почему офлайн выматывает, а онлайн освобождает</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>10+ часов в день</h3>
+          <p>Ты работаешь без пауз, зависишь от графика и локации, и боишься выключиться хоть на день.</p>
+        </div>
+        <div class="card">
+          <h3>Выгорание и торги</h3>
+          <p>Постоянные торги с клиентами, нервы, усталость — и никакой масштабируемости.</p>
+        </div>
+        <div class="card">
+          <h3>Старт в онлайне непонятен</h3>
+          <p>Видишь, как другие зарабатывают на контенте, но не знаешь, с чего начать и что именно делать.</p>
+        </div>
+      </div>
+      <div class="gallery">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1540621768060-8d6c8f6a2a5e?q=80&w=1000&auto=format&fit=crop" alt="Люксовый автомобиль" />
+        <img loading="lazy" src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1000&auto=format&fit=crop" alt="Часы и успех" />
+        <img loading="lazy" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop" alt="Город и рост" />
+        <img loading="lazy" src="https://images.unsplash.com/photo-1520975922324-48babcde00b8?q=80&w=1000&auto=format&fit=crop" alt="Лэптоп и работа из любой точки" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="program">
+    <div class="container">
+      <div class="sec__heading">
+        <div>
+          <div class="kicker">Решение</div>
+          <h2>Мини-курс «Контент, который продаёт»</h2>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="card">
+          <h3>Что внутри мини-курса</h3>
+          <ul class="list">
+            <li><span class="dot">✓</span><div>Модуль 1: Как найти свою инфо-концепцию и продукт даже без опыта</div></li>
+            <li><span class="dot">✓</span><div>Модуль 2: Создание оффера, от которого невозможно отказаться</div></li>
+            <li><span class="dot">✓</span><div>Модуль 3: Контент-план с готовыми идеями для Reels и каруселей</div></li>
+            <li><span class="dot">✓</span><div>Модуль 4: Настройка простой автоворонки для автоматических продаж</div></li>
+            <li><span class="dot">✓</span><div>Бонус: Анализ кейсов успешных экспертов и разбор популярных стратегий</div></li>
+          </ul>
+          <div class="badges" style="margin-top:16px">
+            <span class="badge">Формат: видео + чек-листы + шаблоны</span>
+            <span class="badge">Время: ~2 недели</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Преимущества и выгоды</h3>
+          <ul class="list">
+            <li><span class="dot">✓</span><div>Зарабатывай от <strong>100 000 ₽/мес</strong> с первых запусков</div></li>
+            <li><span class="dot">✓</span><div>Без офиса и закупки товара</div></li>
+            <li><span class="dot">✓</span><div>Работай из любой точки мира — нужен только телефон и Wi-Fi</div></li>
+            <li><span class="dot">✓</span><div>Не требуется аудитория — продажи даже с 0 подписчиков</div></li>
+            <li><span class="dot">✓</span><div>Без вебинаров, сторис-марафонов и сложных прогревов</div></li>
+            <li><span class="dot">✓</span><div>Масштабирование без команды и крупных вложений</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container">
+      <div class="sec__heading">
+        <div>
+          <div class="kicker">Результаты</div>
+          <h2>Социальное доказательство</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>«С нуля до 120 000 ₽»</h3>
+          <p>«Я начал с нуля, без блога и опыта — и уже через месяц заработал 120 000 рублей на своих Reels» — Игорь, фитнес-тренер</p>
+        </div>
+        <div class="card">
+          <h3>«230 000 ₽ за месяц»</h3>
+          <p>«Благодаря курсу запустила мини-курс и получила первые 230 000 за месяц» — Алина, психолог</p>
+        </div>
+        <div class="card">
+          <h3>«Первые клиенты с каруселей»</h3>
+          <p>«Просто следовал инструкциям и смог найти клиентов на консультации через карусели» — Дмитрий, бухгалтер</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="price">
+    <div class="container">
+      <div class="sec__heading">
+        <div>
+          <div class="kicker">Цена</div>
+          <h2>Присоединяйся сегодня — получи всё сразу</h2>
+        </div>
+      </div>
+      <div class="price">
+        <div class="card">
+          <div class="price__tag">1990 ₽</div>
+          <p class="muted">Весь курс + бонусы. Оплата одним платежом — без подписок и скрытых платежей.</p>
+          <ul class="list" style="margin-top:16px">
+            <li><span class="dot">✓</span><div>Полный доступ к урокам навсегда</div></li>
+            <li><span class="dot">✓</span><div>Шаблоны, чек-листы, готовые идеи</div></li>
+            <li><span class="dot">✓</span><div>Обновления включены</div></li>
+          </ul>
+        </div>
+        <div class="card cta" id="buy">
+          <h3 style="margin-top:0">Начни менять свою жизнь прямо сейчас!</h3>
+          <p>Жми кнопку — и забирай доступ к мини-курсу «Контент, который продаёт».</p>
+          <a class="btn btn--accent" href="https://t.me/albert_support" target="_blank" rel="noopener">Получить доступ за 1990 ₽</a>
+          <p style="margin-top:10px; font-size:13px; opacity:.9">Оплата через Telegram | Быстрая выдача доступа</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sec__heading">
+        <div>
+          <div class="kicker">Бонус</div>
+          <h2>Поддержка и лайвы каждую неделю</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Закрытый чат</h3>
+          <p>При покупке сегодня — доступ в комьюнити для обмена опытом и обратной связи.</p>
+        </div>
+        <div class="card">
+          <h3>Еженедельные лайвы</h3>
+          <p>Разборы, ответы на вопросы, корректировка твоей стратегии на месте.</p>
+        </div>
+        <div class="card">
+          <h3>База материалов</h3>
+          <p>Архив шаблонов и примеров для быстрых запусков без «творческих мук».</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sec__heading">
+        <div>
+          <div class="kicker">FAQ</div>
+          <h2>Частые вопросы</h2>
+        </div>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>У меня нет подписчиков, смогу ли я начать?</summary>
+          <p>Да! Ты научишься создавать контент, который сам привлекает аудиторию и клиентов.</p>
+        </details>
+        <details>
+          <summary>Нужно ли показывать лицо в видео?</summary>
+          <p>Нет, есть варианты с каруселями и другими форматами. Внутри — инструкции и шаблоны.</p>
+        </details>
+        <details>
+          <summary>Сколько времени занимает обучение?</summary>
+          <p>Около 2 недель с возможностью проходить уроки в удобном темпе.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="sec__heading">
+        <div>
+          <div class="kicker">Контакты</div>
+          <h2>Нужна помощь — напиши</h2>
+        </div>
+      </div>
+      <div class="card">
+        <p style="margin:6px 0 14px">Если остались вопросы — пиши в Telegram: <a href="https://t.me/albert_support" target="_blank" rel="noopener">@albert_support</a></p>
+        <div class="badges">
+          <span class="badge">Поддержка 7/7</span>
+          <span class="badge">Ответ в течение 24 часов</span>
+          <span class="badge">Гарантированный доступ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Content Pro. Все права защищены.</div>
+      <div style="opacity:.85">Серые тона • Белый текст • Плавные анимации</div>
+    </div>
+  </footer>
+
+  <script>
+    // Текущий год
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Плавный скролл
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1 && document.querySelector(id)){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // Анимация появления карточек при скролле
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){ en.target.classList.add('is-inview'); io.unobserve(en.target); }
+      })
+    }, {threshold:.16});
+    document.querySelectorAll('.card').forEach(el=>io.observe(el));
+
+    // Лёгкий параллакс свечения в hero
+    const glow = document.querySelector('.glow--hero');
+    let lcx = 0, lcy = 0;
+    window.addEventListener('mousemove', (e)=>{
+      const x = (e.clientX / window.innerWidth - .5) * 30;
+      const y = (e.clientY / window.innerHeight - .5) * 30;
+      lcx += (x - lcx) * 0.06;
+      lcy += (y - lcy) * 0.06;
+      glow.style.transform = `translate(${lcx}px, ${lcy}px)`;
+    });
+  </script>
+</body>
+</html>
